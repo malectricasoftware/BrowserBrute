@@ -11,7 +11,7 @@ def parser():
 	npparser.add_argument("-pf","--passwordfield",required=True)
 	npparser.add_argument("-fn","--formnumber",required=True)
 	npparser.add_argument("-wl","--wordlist",required=True)
-	npparser.add_argument("-tu","--targeturl")
+	npparser.add_argument("-tu","--targeturl",required=True)
 	npparser.add_argument("-mp","--makepreset",action="store_true")
 	npparser.add_argument("-pn","--presetname")
 
