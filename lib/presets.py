@@ -34,7 +34,6 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 def make_preset(name,browser,url,userfield,passwordfield,formnumber,targeturl):
-	print(url)
 	p=Preset(name,browser,url,userfield,passwordfield,int(formnumber),targeturl)
 	try:
 		session.add(p)
