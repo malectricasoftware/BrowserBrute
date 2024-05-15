@@ -16,15 +16,17 @@ class Preset(Base):
 	userfield = Column("userfield", String)
 	passwordfield = Column("passwordfield", String)
 	formnumber = Column("formnumber", Integer)
+	button = Column("button", String)
 	targeturl = Column("targeturl", String)
 
-	def __init__(self,name,browser,url,userfield,passwordfield,formnumber,targeturl):
+	def __init__(self,name,browser,url,userfield,passwordfield,formnumber,button,targeturl):
 		self.name=name
 		self.browser=browser
 		self.url=url
 		self.userfield=userfield
 		self.passwordfield=passwordfield
 		self.formnumber=formnumber
+		self.button=button
 		self.targeturl=targeturl
 
 engine = create_engine("sqlite:///dbs/presets.db")
@@ -33,8 +35,8 @@ Base.metadata.create_all(bind=engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-def make_preset(name,browser,url,userfield,passwordfield,formnumber,targeturl):
-	p=Preset(name,browser,url,userfield,passwordfield,int(formnumber),targeturl)
+def make_preset(name,browser,url,userfield,passwordfield,formnumber,button,targeturl):
+	p=Preset(name,browser,url,userfield,passwordfield,int(formnumber),button,targeturl)
 	try:
 		session.add(p)
 		session.commit()
@@ -48,5 +50,6 @@ def load_preset(args):
 	args.userfield = p.userfield
 	args.passwordfield = p.passwordfield
 	args.formnumber = p.formnumber
+	args.button = p.button
 	args.targeturl = p.targeturl
 	return args
