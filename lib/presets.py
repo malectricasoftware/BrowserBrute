@@ -45,7 +45,7 @@ def make_preset(name,browser,url,userfield,passwordfield,formnumber,button,targe
 
 def load_preset(args):
 	p=session.query(Preset).filter(Preset.name==args.presetname).first()
-	attrs=["browser","url","userfield","passwordfield","formnumber","button","targeturl"]
+	attrs=Preset.__table__.columns.keys()
 	for attr in attrs:
 		if not hasattr(args,attr):
 			setattr(args,attr,getattr(p,attr))
