@@ -1,9 +1,11 @@
+#imports
 from sqlalchemy import create_engine, Column, String, Integer
 from sqlalchemy.orm import sessionmaker, declarative_base
 from os.path import exists
 from os import mkdir
 from contextlib import contextmanager
 
+#sql alchemy base for tables to inherit from
 Base = declarative_base()
 
 # Ensure the directory for the database exists
