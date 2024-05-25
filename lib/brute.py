@@ -3,19 +3,20 @@ import time
 
 def brute(args):
 	d="Chrome"
-	if args.undetected:
-		import undetected_chromedriver as webdriver
-		from undetected_chromedriver import By
-	else:
+	if args.command == "preset":
+		args=lib.presets.load_preset(args)
+	try:
+		if args.undetected:
+			import undetected_chromedriver as webdriver
+			from undetected_chromedriver import By
+	except:
 		from selenium import webdriver
 		from selenium.webdriver.common.by import By
 		if args.browser == "firefox":
 			d="Firefox"
 	attr=getattr(webdriver,d)
 	driver = attr()
-
-	if args.command == "preset":
-		args=lib.presets.load_preset(args)
+	print(args)
 	if args.command == "brute":
 		if args.makepreset:
 				lib.presets.make_preset(args.presetname,args.browser,str(args.url),args.userfield,args.passwordfield,args.formnumber,args.button,args.targeturl)
