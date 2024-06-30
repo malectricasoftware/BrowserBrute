@@ -1,5 +1,5 @@
 # BrowserBrute
-Online bruteforcing tool based on selenium capable of bypassing certain anti bot measures
+Online bruteforcing tool based on selenium capable of bypassing certain anti bot measures.
 ![image](https://github.com/malectricasoftware/BrowserBrute/assets/107813117/b794087e-987a-47fd-9ccf-aaecebd2c244)
 
 # useage
